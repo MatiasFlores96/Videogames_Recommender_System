@@ -1,0 +1,5 @@
+# Carpeta de configuración del IDE de JetBrains
+/.idea/
+
+# Carpeta con datos
+/Data/
