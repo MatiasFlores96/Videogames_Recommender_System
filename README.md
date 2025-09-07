@@ -1,77 +1,77 @@
 # Hybrid Videogame Recommender System
 
-This repository contains the source code for the Master's Thesis project **"Hybrid Videogame Recommender System Integrating User Behavior, Game Attributes, and Community Ratings"** by Matías Flores. This project is part of the Master's in Data Science program at the Instituto Tecnológico de Buenos Aires (ITBA).
+This repository contains the source code for the Master's thesis **"Hybrid Videogame Recommender System Integrating User Behavior, Game Attributes, and Community Ratings"** by Matías Flores (ITBA).
 
-The core objective is to develop and evaluate a hybrid recommendation system that improves upon traditional collaborative filtering methods by integrating multiple data sources. The system aims to address the information overload problem on videogame platforms like Steam, providing users with more accurate, relevant, and personalized recommendations.
+The main goal is to develop and compare videogame recommender systems for the Steam platform, evaluating a traditional **collaborative filtering** model against a **hybrid** model that integrates collaborative filtering, content-based, and sentiment analysis approaches, all implemented with KerasRS.
 
 ## 🚀 Project Goals
 
-The main goals of this thesis are:
+## 🎯 Thesis Objectives
 
-* To implement a **collaborative filtering** model based on historical user interaction patterns.
-* To develop a **content-based** model that recommends games based on their specific attributes (genre, developer, tags).
-* To incorporate a **sentiment analysis** module using NLP to analyze user reviews and gauge community perception.
-* To build and evaluate a **hybrid model** that combines the three approaches to enhance recommendation accuracy and relevance.
-* To compare the performance of the hybrid system against a traditional collaborative filtering baseline using metrics like precision, recall, and F1-score.
+- Implement a **collaborative filtering** system based on historical user-game interaction patterns.
+- Develop a **content-based** system that recommends games according to their attributes (genre, developer, tags, etc.).
+- Incorporate a **sentiment analysis** module on user reviews using NLP.
+- Build a **hybrid model** that combines the three previous approaches.
+- Compare the performance of the hybrid model against the pure collaborative filtering model, using metrics such as recall@k and ndcg@k.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technologies Used
 
-This project is developed in Python and leverages the following core libraries:
-
-* **Data Manipulation & Analysis**: Pandas, NumPy
-* **Data Visualization**: Matplotlib, Seaborn
-* **Machine Learning & NLP**: Scikit-learn, NLTK
+- **Python** (main language)
+- **Pandas, NumPy** (data processing)
+- **Matplotlib, Seaborn** (visualization)
+- **Scikit-learn, NLTK** (ML and NLP)
+- **KerasRS** (Keras 3, TensorFlow/Torch backends, recommender systems)
 * **Recommender Systems**: Surprise, KerasRS (TensorFlow)
-* **Deep Learning**: TensorFlow, Keras
+- **Hugging Face Transformers** (advanced NLP)
 * **NLP Transformers**: Hugging Face Transformers
 
 ---
-
+## 📁 Project Structure
 ## ⚙️ Setup and Installation
+- `Data/`: Raw and processed data (parquet, npz, json, csv).
+- `Code/`: Data processing, modeling, and evaluation scripts.
+  - `01_generacion_dataset.py`: Main dataset generation and cleaning.
+  - `02_analisis_exploratorio.py`: Exploratory data analysis.
+  - `03_models/`: Recommender models and utilities.
+    - `data_prep_to_npz.py`: Prepares data splits for training.
 
-1.  **Clone the repository:**
-    ```sh
-    git clone [https://github.com/your-username/Videogames_Recommender_System.git](https://github.com/your-username/Videogames_Recommender_System.git)
-    cd Videogames_Recommender_System
-    ```
-
-2.  **Create and activate a virtual environment (recommended):**
-    ```sh
-    python -m venv venv
-    # On Windows
+    - `utils_metrics.py`: Evaluation metrics (recall@k, ndcg@k).
+    - *(coming soon)*: Content-based, sentiment analysis, and hybrid models.
+- `Results/`: Experiment results (weights and metrics for each run, organized by model and timestamp).
+- `Doc/`: Documentation and thesis PDF.
     venv\Scripts\activate
     # On macOS/Linux
     source venv/bin/activate
-    ```
+## ⚙️ Installation and Usage
 
-3.  **Install the required dependencies:**
+1. **Clone the repository:**
     ```sh
     pip install -r requirements.txt
     ```
 
----
+2. **Create and activate a virtual environment:**
 
 ## ▶️ How to Run
 
-The project workflow is split into two main stages:
+   # or
 
 1.  **Data Preparation**:
-    First, run the data generation script. This will process the raw `.json` files from the `Data/` directory and save a clean, unified dataset as `dataset_procesado.parquet`. This step only needs to be run once.
+3. **Install dependencies:**
     ```sh
     python Code/01_generacion_dataset.py
     ```
 
 2.  **Analysis and Modeling**:
     Once the processed dataset exists, you can run the analysis or modeling scripts. These scripts load the `.parquet` file directly, making them fast and efficient.
-    ```sh
+## ▶️ Running the Models
     # Example for running Exploratory Data Analysis
-    python Code/02_analisis_exploratorio.py
-    ```
+### 1. Data Preparation
+Process raw data and generate the main dataset:
 
 ---
 
-## ✍️ Author
+Prepare the train/validation/test splits in `.npz` format:
 
 * **Matias Gabriel Flores**

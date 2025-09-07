@@ -1,0 +1,28 @@
+# Core scientific stack
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# Deep learning
+keras>=3.0.0
+# Use torch as backend for Keras 3
+torch>=2.0.0
+# TensorFlow (for KerasRS compatibility, not as backend)
+tensorflow>=2.12.0
+
+# NLP
+nltk
+transformers
+
+# Parquet support
+pyarrow
+
+# Recommender systems
+# KerasRS (if available as pip package, otherwise install manually)
+# kerasrs
+
+# Other utilities
+# (add more as needed)
+
