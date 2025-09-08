@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SVD - tuning rápido",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/Code/Models/svd_collaborative_filtering.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "env": { "KERAS_BACKEND": "torch" },
+      "args": [
+        "--datadir","data",
+        "--factors","64",
+        "--epochs","10",
+        "--batch_size","2048",
+        "--l2","5e-6",
+        "--k_list","10,20",
+        "--sample_items","2000",
+        "--max_eval_users","800",
+        "--skip_save"
+      ]
+    }
+  ]
+}

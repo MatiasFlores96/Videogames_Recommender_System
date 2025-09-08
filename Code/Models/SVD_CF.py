@@ -12,6 +12,8 @@ Usage:
     --k_list 10,20 --sample_items 2000 --max_eval_users 1000 --skip_save
 """
 
+import os
+os.environ["KERAS_BACKEND"] = "torch"
 
 import argparse, os, numpy as np, json, sys, time
 
@@ -87,12 +89,37 @@ def evaluate_retrieval(model, test_u, test_i, test_y, n_items, k_list=(10,20),
     ranked_labels = []
 
     t0 = time.time()
+    # Para asegurar que todos los arrays tengan la misma longitud:
+    fixed_cand_size = None
     for idx, u in enumerate(eval_users, 1):
         gt = test_pos[u]
         cand = candidates
         if gt:
             cand = np.unique(np.concatenate([candidates, np.fromiter(gt, dtype=np.int32)]))
-
+        # Fijar tamaño de candidatos en la primera iteración
+        if fixed_cand_size is None:
+            fixed_cand_size = len(cand)
+        # Si el tamaño cambia, recortar o rellenar
+        if len(cand) > fixed_cand_size:
+            # recortar aleatoriamente (pero siempre incluir los ground-truth)
+            gt_arr = np.array(list(gt), dtype=np.int32)
+            # asegurarse de que gt esté incluido
+            extra = np.setdiff1d(cand, gt_arr, assume_unique=True)
+            n_extra = fixed_cand_size - len(gt_arr)
+            if n_extra > 0:
+                rng = np.random.default_rng(seed + idx)
+                extra_sample = rng.choice(extra, size=n_extra, replace=False) if len(extra) > n_extra else extra
+                cand = np.concatenate([gt_arr, extra_sample])
+            else:
+                cand = gt_arr[:fixed_cand_size]
+        elif len(cand) < fixed_cand_size:
+            # rellenar con candidatos aleatorios que no estén en cand
+            missing = fixed_cand_size - len(cand)
+            pool = np.setdiff1d(np.arange(n_items), cand, assume_unique=True)
+            rng = np.random.default_rng(seed + idx)
+            fill = rng.choice(pool, size=missing, replace=False) if len(pool) >= missing else pool
+            cand = np.concatenate([cand, fill])
+        # cand ahora tiene tamaño fijo
         user_arr = np.full_like(cand, u, dtype=np.int32)
         scores = model.predict({"user_idx": user_arr, "item_idx": cand}, verbose=0).reshape(-1)
 

@@ -52,26 +52,3 @@ The main goal is to develop and compare videogame recommender systems for the St
     ```
 
 2. **Create and activate a virtual environment:**
-
-## ▶️ How to Run
-
-   # or
-
-1.  **Data Preparation**:
-3. **Install dependencies:**
-    ```sh
-    python Code/01_generacion_dataset.py
-    ```
-
-2.  **Analysis and Modeling**:
-    Once the processed dataset exists, you can run the analysis or modeling scripts. These scripts load the `.parquet` file directly, making them fast and efficient.
-## ▶️ Running the Models
-    # Example for running Exploratory Data Analysis
-### 1. Data Preparation
-Process raw data and generate the main dataset:
-
----
-
-Prepare the train/validation/test splits in `.npz` format:
-
-* **Matias Gabriel Flores**
