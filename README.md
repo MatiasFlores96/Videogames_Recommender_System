@@ -23,20 +23,22 @@ The main goal is to develop and compare videogame recommender systems for the St
 - **Matplotlib, Seaborn** (visualization)
 - **Scikit-learn, NLTK** (ML and NLP)
 - **KerasRS** (Keras 3, TensorFlow/Torch backends, recommender systems)
-* **Recommender Systems**: Surprise, KerasRS (TensorFlow)
-- **Hugging Face Transformers** (advanced NLP)
-* **NLP Transformers**: Hugging Face Transformers
+* **Recommender Systems**: KerasRS (TensorFlow)
 
 ---
 ## 📁 Project Structure
 ## ⚙️ Setup and Installation
 - `Data/`: Raw and processed data (parquet, npz, json, csv).
 - `Code/`: Data processing, modeling, and evaluation scripts.
-  - `01_generacion_dataset.py`: Main dataset generation and cleaning.
-  - `02_analisis_exploratorio.py`: Exploratory data analysis.
-  - `03_models/`: Recommender models and utilities.
+  - `parquet_data_generation.py`: Main dataset generation and cleaning.
+  - `exploratory_data_analysis.py`: Exploratory data analysis.
+  - `Models/`: Recommender models and utilities.
+    - `SVD_CF.py`: SVD FUNK Matrix Factorization Recommender System.
+    - `NMF_CF.py`: Non Matrix Factorization Recommender System.
+    - `ALS_CF.py`: ALS Recommender System.
+    - `UserUser_CF.py`: User User Memory Based Recommender System.
+    - `ItemItem_CF.py`: Item Item Memory Based Recommender System.        
     - `data_prep_to_npz.py`: Prepares data splits for training.
-
     - `utils_metrics.py`: Evaluation metrics (recall@k, ndcg@k).
     - *(coming soon)*: Content-based, sentiment analysis, and hybrid models.
 - `Results/`: Experiment results (weights and metrics for each run, organized by model and timestamp).
@@ -44,6 +46,7 @@ The main goal is to develop and compare videogame recommender systems for the St
     venv\Scripts\activate
     # On macOS/Linux
     source venv/bin/activate
+
 ## ⚙️ Installation and Usage
 
 1. **Clone the repository:**
